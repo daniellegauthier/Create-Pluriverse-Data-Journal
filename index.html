@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>create a data journal entry</title>
+</head>
+
+<body>
+  
+  <h1>Create a Pluriverse Data Journal Entry</h1>
+  by Danielle Gauthier<br>
+  <br>
+  1. Answer the "Pluriverse Data Journal Problems" for moving forward in the boxes below. <br><br>
+  (If you are grieving, please don't think I mean forgetting anyone. I mean remembering.)<br><br>
+  2. Find out how common your answers are and why.<br>
+  <li>race</li>
+  <li>gender</li>
+  <li>education</li>
+  <li>occupation</li>
+  <li>wealth</li>
+  <li>ability/health</li>
+  <li>geography</li>
+  <br><br>
+  a. How are you an outlier? What is your experience attached to this?<br>
+  b. How are you average? Is it a structural flaw? Is it an anthropological reflection of your culture?<br>
+  c. What do your people need? Who do you relate to the most and how can you be supported better by us?<br>
+  For help with part 2c, imaging the future, answer the "design" questions. This will determine the formatting of your Pluriverse Data Journal Entry.
+  <br><br>
+  3. Hit Enter and you will get results.
+  
+  
+<!--design a mapping of the input variables that preserves a general shape or meaning
+  //use the assigned name of the textarea to reveal the input variable -->
+  <script>
+      function expose() {
+   document.getElementById("result").innerHTML = "<br>Dear policy maker,<br> <br>My name is " + document.getElementById("name").value + " from " + document.getElementById("organization").value + ". Here is a little about my intersection so you can know about my community struggles. " + document.getElementById("expression").value + " happens to me a lot. This is a breakdown of how to address this public issue using the Pluriverse Data Journal Entry creator by Danielle Gauthier (she/they). <br> <br> " + document.getElementById("expression").value + " makes it harder for me to survive. I feel like it is my fault but this deterministic model defines how social construction is personal politics. I did the work for you of determining how to save people like me in the community with a lasting effort. " + document.getElementById("body").value + "  is some of the stuff happening to me that I want to change. " + document.getElementById("intention").value + " is my intention.<br><br> " + document.getElementById("race").value + " is a common issue for people with my racial demographic. " + document.getElementById("gender").value + " is a gender issue for me. My education is " +  document.getElementById("education").value + " but that has nothing to do with anything in this deterministic model. My occupation shows " + document.getElementById("occupation").value + ". My " +  document.getElementById("ability").value + " affects my " + document.getElementById("wealth").value + " and my " +  document.getElementById("health").value + ". <br><br> I am one of many and also one of few. My environment is " + document.getElementById("geography").value + " but I want it to be " +  document.getElementById("autonomy").value + ". " + document.getElementById("average").value + " makes me one of many and " + document.getElementById("outlier").value + " makes me one of few. " + document.getElementById("expression").value + " can be solved for us with the following policy:<br> <br>" + document.getElementById("design").value + " that is for " + document.getElementById("future").value + " solves my social problem. " + document.getElementById("new").value + " preserves my " + document.getElementById("symbol").value + ". " + document.getElementById("impact").value + " provides me with . " + document.getElementById("support").value + ". To end my " +  document.getElementById("origin").value + ", I need to destroy the " + document.getElementById("leak").value + ". It is causing a lack of " + document.getElementById("depletion").value + ". I am commited to " + document.getElementById("ritual").value + " for " + document.getElementById("hope").value + " to enhance " + document.getElementById("obstacles").value + " for " + document.getElementById("depict").value + ". "
+      }
+  
+    document.getElementById('pluriverse').submit(); </script>
+  
+  <!--make a table to label the points for mapping with input textboxes-->
+  <form id="pluriverse">
+  <table border="2">
+  <tr>
+    <th scope="col">Pluriverse Data Journal Problems</th>
+    <th scope="col" width="300">Prompts</th>
+    <th scope="col"><input id="name" cols="250" rows="1" value="What is your name?"></th>
+    </tr><th></th>
+    <th></th>
+    <th><input id="organization" rows="1" cols="250" value="What organization are you from?"></th>
+    <tr>
+    <th scope="row">Why have you forgotten your self?</th>
+    <td>There is no reason to completely submit to your environment in a way that silences your creativity. Describe an experience, image, feeling, or fear associated with your struggle to express yourself.</td>
+    <td><input value="Why have you forgotten yourself?" id = "expression"></td>
+  </tr>
+   <tr>
+    <th scope="row">What is missing for your return?</th>
+    <td>I'm sure you have come across obstacles. What were they? Where did they come from?</td>
+    <td><input value="What is missing for your return?" id = "origin"></td>
+  </tr> <tr>
+    <th scope="row">What of yourself do you want to witness?</th>
+    <td>This is like a prayer or intention. How do your ethics and actions align? What karma do you want to correct?</td>
+    <td><input value="What of yourself do you want to witness?" id = "intention"></td>
+  </tr><tr> 
+    <th scope="row">What needs to be held?</th>
+    <td>Think of what is precious or serves as a symbol for you right now. </td>
+    <td><input value="What needs to be held?" id = "symbol"></td>
+  </tr>
+   <tr>
+    <th scope="row">How are you changing?</th>
+       <td>What is new in your expression?</td>
+    <td><input value="How are you changing?" id = "new"></td>
+  </tr><tr>
+    <th scope="row">What carries and lifts you?</th>
+    <td>What support can you identify in your life, whether you have access or not?</td>
+    <td><input value="What carries and lifts you?" id = "support"></td>
+  </tr>
+   <tr>
+    <th scope="row">What can you erase of this state?</th>
+    <td>What does your impact reach?</td>
+    <td><input value="What can you erase of this state?" id = "impact"></td>
+  </tr> <tr>
+    <th scope="row">How can you treat to forget your body?</th>
+    <td>Get graphic about what the world did to you. Find that you are a poet. Be dramatic.</td>
+    <td><input value="How can you treat to forget your body?" id = "body"></td>
+  </tr> <tr>
+    <th scope="row">How are you already in achievement?</th>
+    <td>Take a moment to give your self credit for your wisdom in how you carry the burden of your emotions.</td>
+    <td><input value="How are you already in achievement?" id = "success"></td>
+  </tr> <tr>
+    <th>race</th>
+    <td>Identify a statistic that connects your experience to your race.</td>
+    <td><input value="quotation from source" id = "race"></td>
+  </tr> <tr>
+    <th>gender</th>
+    <td>Identify a statistic that connects your experience to your gender.</td>
+    <td><input value="quotation from source" id = "gender"></td>
+  </tr> <tr>
+    <th>education</th>
+    <td>Identify a statistic that connects your experience to people with your level of education.</td>
+    <td><input value="quotation from source" id = "education"></td>
+  </tr> <tr>
+    <th>occupation</th>
+    <td>Identify a statistic that connects your experience to people with your job or background.</td>
+    <td><input value="quotation from source" id = "occupation"></td>
+  </tr> <tr>
+    <th>wealth</th>
+    <td>Identify a statistic that connects your experience to people with your socio-economic status.</td>
+    <td><input value="quotation from source" id = "wealth"></td>
+  </tr> <tr>
+    <th>ability</th>
+    <td>Identify a statistic that connects your experience to people with your ability.</td>
+    <td><input value="quotation from source" id = "ability"></td>
+  </tr>
+    <tr>
+    <th>health</th>
+    <td>Identify a statistic that connects your experience to people with your health conditions.</td>
+    <td><input value="quotation from source" id = "health"></td>
+  </tr>
+    <tr>
+    <th>geography</th>
+    <td>Identify a statistic that connects your experience to people in your area.</td>
+    <td><input value="quotation from source" id = "geography"></td>
+  </tr>
+    <tr>
+    <th scope="row">How are you an outlier?</th>
+    <td>This will help us understand how you are under represented.</td>
+    <td><input value="How are you an outlier" id = "outlier"></td>
+  </tr>
+    <tr>
+    <th scope="row">How are you average?</th>
+    <td>What are common aspects of your identity?</td>
+    <td><input value="How are you average?" id = "average"></td>
+  </tr>
+    
+    
+    <tr>
+    <th scope="row">How can you exemplify an energy descent to embody futurization?</th>
+    <td>Prosperity, spirituality, furgality.</td>
+      <td><input value="How can you exemplify an energy descent?" id = "future"></td></tr>
+      
+    <tr>
+    <th scope="row">What place is your center?</th>
+    <td>What is local to you and/or supports your autonomy? Name qualities and not a nation-state because ****</td>
+      <td><input value="What is your center?" id = "autonomy"></td></tr>
+    
+    
+    <tr>
+    <th scope="row">What policy do you critique?</th>
+    <td>Identify the bleed or lack of protection.</td>
+      <td><input value="What policy do you critique?" id = "leak"></td></tr>
+    
+    <tr>
+    <th scope="row">What extraction needs to be restored?</th>
+    <td>We live in a culture of depletion. What do you need to preserve?</td>
+      <td><input value="What extraction needs to be restored?" id = "depletion"></td></tr>
+    
+    <tr>
+    <th scope="row">How are you ready to embrace transformation?</th>
+    <td>What aspects of change are you open to and hoping for?</td>
+      <td><input value="How are you ready to embrace transformation?" id = "hope"></td></tr>
+
+    <tr>
+    <th scope="row">What is your creation you want to sustain?</th>
+    <td>What practice is meaningful to you that you want to center and ritualize?</td>
+      <td><input value="What is your creation you want to sustain?" id = "ritual"></td></tr>
+    <tr>
+    <th scope="row">How do you cooperate with others?</th>
+    <td>Think of what you appreciate about diversity. Think of your obstacles.</td>
+      <td><input value="How do you cooperate with others?" id = "obstacles"></td></tr>
+    
+    <tr>
+    <th scope="row">Are you taking a bottom-up or horizontal approach?</th>
+    <td>A bottom-up approach would consider people excluded from the design stage as integral to the design. A horizontal approach doesn't exclude people from the design process.</td>
+      <td><input value="What is your approach?" id = "design"></td></tr>
+    
+    <tr>
+    <th scope="row">What are the consequences of the change you demand?</th>
+    <td>Depict what is special about the future you want to attract.</td>
+      <td><input value="What are the consequences?" id = "depict"></td></tr>
+    </table>
+    <!--make a button to reveal the mapping-->
+     <br>Result: <span id="result"></span><br>
+    <input type="button" value="complete Pluriverse Data Journal Designed Entry"  onclick="expose();">
+    </form>
+    <!--collects webpage as is for printing or saving as pdf-->
+  <button onclick="print();">Save</button>
+  <br>
+ </body>
+</html>
