@@ -32,6 +32,7 @@ body {
       color: white;
       border: none;
       cursor: pointer;
+      margin-top: 10px; /* Added margin-top to create space between buttons */
     }
 
     input[type="button"]:hover {
