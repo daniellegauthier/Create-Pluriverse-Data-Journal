@@ -52,7 +52,7 @@
     <th scope="col"><input id="name" cols="250" rows="1" value="What is your name?"></th>
     </tr><th></th>
     <th></th>
-    <th><input id="organization" rows="1" cols="250" value="What organization are you from?"></th>
+    <th><input id="organization" rows="1" cols="250" value="What organization and/or place are you from?"></th>
     <tr>
     <th scope="row">Why have you forgotten your self?</th>
     <td>There is no reason to completely submit to your environment in a way that silences your creativity. Describe an experience, image, feeling, or fear associated with your struggle to express yourself.</td>
@@ -85,9 +85,9 @@
     <td>What does your impact reach?</td>
     <td><input value="What can you erase of this state?" id = "impact"></td>
   </tr> <tr>
-    <th scope="row">How can you treat to forget your body?</th>
+    <th scope="row">Why do you want to forget your body?</th>
     <td>Get graphic about what the world did to you. Find that you are a poet. Be dramatic.</td>
-    <td><input value="How can you treat to forget your body?" id = "body"></td>
+    <td><input value="Why do you want to forget your body?" id = "body"></td>
   </tr> <tr>
     <th scope="row">How are you already in achievement?</th>
     <td>Take a moment to give your self credit for your wisdom in how you carry the burden of your emotions.</td>
@@ -95,42 +95,42 @@
   </tr> <tr>
     <th>race</th>
     <td>Identify a statistic that connects your experience to your race.</td>
-    <td><input value="quotation from source" id = "race"></td>
+    <td><input value="race quotation from source" id = "race"></td>
   </tr> <tr>
     <th>gender</th>
     <td>Identify a statistic that connects your experience to your gender.</td>
-    <td><input value="quotation from source" id = "gender"></td>
+    <td><input value="gender quotation from source" id = "gender"></td>
   </tr> <tr>
     <th>education</th>
     <td>Identify a statistic that connects your experience to people with your level of education.</td>
-    <td><input value="quotation from source" id = "education"></td>
+    <td><input value="education quotation from source" id = "education"></td>
   </tr> <tr>
     <th>occupation</th>
     <td>Identify a statistic that connects your experience to people with your job or background.</td>
-    <td><input value="quotation from source" id = "occupation"></td>
+    <td><input value="occupation quotation from source" id = "occupation"></td>
   </tr> <tr>
     <th>wealth</th>
     <td>Identify a statistic that connects your experience to people with your socio-economic status.</td>
-    <td><input value="quotation from source" id = "wealth"></td>
+    <td><input value="wealth quotation from source" id = "wealth"></td>
   </tr> <tr>
     <th>ability</th>
     <td>Identify a statistic that connects your experience to people with your ability.</td>
-    <td><input value="quotation from source" id = "ability"></td>
+    <td><input value="ability quotation from source" id = "ability"></td>
   </tr>
     <tr>
     <th>health</th>
     <td>Identify a statistic that connects your experience to people with your health conditions.</td>
-    <td><input value="quotation from source" id = "health"></td>
+    <td><input value="health quotation from source" id = "health"></td>
   </tr>
     <tr>
     <th>geography</th>
     <td>Identify a statistic that connects your experience to people in your area.</td>
-    <td><input value="quotation from source" id = "geography"></td>
+    <td><input value="geography quotation from source" id = "geography"></td>
   </tr>
     <tr>
     <th scope="row">How are you an outlier?</th>
     <td>This will help us understand how you are under represented.</td>
-    <td><input value="How are you an outlier" id = "outlier"></td>
+    <td><input value="How are you an outlier?" id = "outlier"></td>
   </tr>
     <tr>
     <th scope="row">How are you average?</th>
@@ -187,9 +187,26 @@
     <!--make a button to reveal the mapping-->
      <br>Result: <span id="result"></span><br>
     <input type="button" value="complete Pluriverse Data Journal Designed Entry"  onclick="expose();">
+     <input type="reset" id="clearButton" value="Clear">
     </form>
-    <!--collects webpage as is for printing or saving as pdf-->
+   
+
+  <br>    <!--collects webpage as is for printing or saving as pdf-->
   <button onclick="print();">Save</button>
+  
+  
+    <div id="output"></div>
+
+    <script>
+        const form = document.getElementById('pluriverse');
+        const clearButton = document.getElementById('clearButton');
+
+        clearButton.addEventListener('click', () => {
+            form.reset(); // This should work, but if it doesn't...
+            
+             result.innerHTML = '';
+        });
+    </script>
   <br>
  </body>
 </html>
