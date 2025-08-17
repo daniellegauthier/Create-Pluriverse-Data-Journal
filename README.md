@@ -24,5 +24,5 @@ Create Pluriverse Data Journal is a web-based tool and does not require installa
 Contributions to Create Pluriverse Data Journal are welcome! If you'd like to contribute to the project, please fork the repository, make your changes, and submit a pull request. Be sure to follow the project's code of conduct and contribution guidelines.
 
 ## License
-This project is licensed under the GNU General Public License (GPL).
+This project is licensed under the Apache License 2.0.
 
