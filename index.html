@@ -1,212 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
-  
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>create a data journal entry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create a Pluriverse Data Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    :root { --bg:#0e0f12; --fg:#eaeaf0; --muted:#9aa0a6; --card:#16181d; --accent:#7ee787; --accent2:#79c0ff; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);}
+    header{padding:24px 20px;border-bottom:1px solid #20242c;background:linear-gradient(180deg,#12141a,#0e0f12)}
+    h1{margin:0 0 6px;font-size:28px}
+    p.sub{margin:0;color:var(--muted)}
+    main{display:grid;grid-template-columns:1.2fr 1fr;gap:18px; padding:18px;}
+    .card{background:var(--card);border:1px solid #20242c;border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .card h2{margin:0 0 12px;font-size:18px}
+    label{display:block;font-size:12px;color:var(--muted);margin:12px 0 6px}
+    input[type=text], textarea, select{width:100%;background:#0c0d10;border:1px solid #2a2f39;color:var(--fg);padding:10px;border-radius:10px}
+    textarea{min-height:72px}
+    .grid{display:grid;grid-template-columns:1fr 1fr; gap:12px}
+    .row{display:flex;gap:10px;align-items:center}
+    .small{font-size:12px;color:var(--muted)}
+    button{background:var(--accent);border:0;border-radius:12px;color:#0b0d0f;padding:10px 14px;font-weight:700;cursor:pointer}
+    button.secondary{background:#2b3038;color:var(--fg);border:1px solid #3a3f49}
+    canvas{width:100%; border-radius:12px;}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#1b1f27;border:1px solid #2a2f39;color:var(--muted);font-size:12px}
+    .ok{color:#9effa5}
+    .warn{color:#ffb86b}
+    .err{color:#ff7b7b}
+    footer{padding:18px;color:var(--muted)}
+    @media (max-width:980px){ main{grid-template-columns:1fr;}}
+  </style>
 </head>
-
 <body>
-  
-  <h1>Create a Pluriverse Data Journal Entry</h1>
-  by Danielle Gauthier<br>
-  <br>
-  1. Answer the "Pluriverse Data Journal Problems" for moving forward in the boxes below. <br><br>
-  (If you are grieving, please don't think I mean forgetting anyone. I mean remembering.)<br><br>
-  2. Find out how common your answers are and why.<br>
-  <li>race</li>
-  <li>gender</li>
-  <li>education</li>
-  <li>occupation</li>
-  <li>wealth</li>
-  <li>ability/health</li>
-  <li>geography</li>
-  <br><br>
-  a. How are you an outlier? What is your experience attached to this?<br>
-  b. How are you average? Is it a structural flaw? Is it an anthropological reflection of your culture?<br>
-  c. What do your people need? Who do you relate to the most and how can you be supported better by us?<br>
-  For help with part 2c, imaging the future, answer the "design" questions. This will determine the formatting of your Pluriverse Data Journal Entry.
-  <br><br>
-  3. Hit Enter and you will get results.
-  
-  
-<!--design a mapping of the input variables that preserves a general shape or meaning
-  //use the assigned name of the textarea to reveal the input variable -->
-  <script>
-      function expose() {
-   document.getElementById("result").innerHTML = "<br>Dear policy maker,<br> <br>My name is " + document.getElementById("name").value + " from " + document.getElementById("organization").value + ". Here is a little about my intersection so you can know about my community struggles. " + document.getElementById("expression").value + " happens to me a lot. This is a breakdown of how to address this public issue using the Pluriverse Data Journal Entry creator by Danielle Gauthier (she/they). <br> <br> " + document.getElementById("expression").value + " makes it harder for me to survive. I feel like it is my fault but this deterministic model defines how social construction is personal politics. I did the work for you of determining how to save people like me in the community with a lasting effort. " + document.getElementById("body").value + "  is some of the stuff happening to me that I want to change. " + document.getElementById("intention").value + " is my intention.<br><br> " + document.getElementById("race").value + " is a common issue for people with my racial demographic. " + document.getElementById("gender").value + " is a gender issue for me. My education is " +  document.getElementById("education").value + " but that has nothing to do with anything in this deterministic model. My occupation shows " + document.getElementById("occupation").value + ". My " +  document.getElementById("ability").value + " affects my " + document.getElementById("wealth").value + " and my " +  document.getElementById("health").value + ". <br><br> I am one of many and also one of few. My environment is " + document.getElementById("geography").value + " but I want it to be " +  document.getElementById("autonomy").value + ". " + document.getElementById("average").value + " makes me one of many and " + document.getElementById("outlier").value + " makes me one of few. " + document.getElementById("expression").value + " can be solved for us with the following policy:<br> <br>" + document.getElementById("design").value + " that is for " + document.getElementById("future").value + " solves my social problem. " + document.getElementById("new").value + " preserves my " + document.getElementById("symbol").value + ". " + document.getElementById("impact").value + " provides me with " + document.getElementById("support").value + ". To end my " +  document.getElementById("origin").value + ", I need to destroy the " + document.getElementById("leak").value + ". It is causing a lack of " + document.getElementById("depletion").value + ". I am commited to " + document.getElementById("ritual").value + " for " + document.getElementById("hope").value + " to enhance " + document.getElementById("obstacles").value + " for " + document.getElementById("depict").value + ". "
-      }
-  
-    document.getElementById('pluriverse').submit(); </script>
-  
-  <!--make a table to label the points for mapping with input textboxes-->
-  <form id="pluriverse">
-  <table border="2">
-  <tr>
-    <th scope="col">Pluriverse Data Journal Problems</th>
-    <th scope="col" width="300">Prompts</th>
-    <th scope="col"><input id="name" cols="250" rows="1" value="What is your name?"></th>
-    </tr><th></th>
-    <th></th>
-    <th><input id="organization" rows="1" cols="250" value="What organization and/or place are you from?"></th>
-    <tr>
-    <th scope="row">Why have you forgotten your self?</th>
-    <td>There is no reason to completely submit to your environment in a way that silences your creativity. Describe an experience, image, feeling, or fear associated with your struggle to express yourself.</td>
-    <td><input value="Why have you forgotten yourself?" id = "expression"></td>
-  </tr>
-   <tr>
-    <th scope="row">What is missing for your return?</th>
-    <td>I'm sure you have come across obstacles. What were they? Where did they come from?</td>
-    <td><input value="What is missing for your return?" id = "origin"></td>
-  </tr> <tr>
-    <th scope="row">What of yourself do you want to witness?</th>
-    <td>This is like a prayer or intention. How do your ethics and actions align? What karma do you want to correct?</td>
-    <td><input value="What of yourself do you want to witness?" id = "intention"></td>
-  </tr><tr> 
-    <th scope="row">What needs to be held?</th>
-    <td>Think of what is precious or serves as a symbol for you right now. </td>
-    <td><input value="What needs to be held?" id = "symbol"></td>
-  </tr>
-   <tr>
-    <th scope="row">How are you changing?</th>
-       <td>What is new in your expression?</td>
-    <td><input value="How are you changing?" id = "new"></td>
-  </tr><tr>
-    <th scope="row">What carries and lifts you?</th>
-    <td>What support can you identify in your life, whether you have access or not?</td>
-    <td><input value="What carries and lifts you?" id = "support"></td>
-  </tr>
-   <tr>
-    <th scope="row">What can you erase of this state?</th>
-    <td>What does your impact reach?</td>
-    <td><input value="What can you erase of this state?" id = "impact"></td>
-  </tr> <tr>
-    <th scope="row">Why do you want to forget your body?</th>
-    <td>Get graphic about what the world did to you. Find that you are a poet. Be dramatic.</td>
-    <td><input value="Why do you want to forget your body?" id = "body"></td>
-  </tr> <tr>
-    <th scope="row">How are you already in achievement?</th>
-    <td>Take a moment to give your self credit for your wisdom in how you carry the burden of your emotions.</td>
-    <td><input value="How are you already in achievement?" id = "success"></td>
-  </tr> <tr>
-    <th>race</th>
-    <td>Identify a statistic that connects your experience to your race.</td>
-    <td><input value="race quotation from source" id = "race"></td>
-  </tr> <tr>
-    <th>gender</th>
-    <td>Identify a statistic that connects your experience to your gender.</td>
-    <td><input value="gender quotation from source" id = "gender"></td>
-  </tr> <tr>
-    <th>education</th>
-    <td>Identify a statistic that connects your experience to people with your level of education.</td>
-    <td><input value="education quotation from source" id = "education"></td>
-  </tr> <tr>
-    <th>occupation</th>
-    <td>Identify a statistic that connects your experience to people with your job or background.</td>
-    <td><input value="occupation quotation from source" id = "occupation"></td>
-  </tr> <tr>
-    <th>wealth</th>
-    <td>Identify a statistic that connects your experience to people with your socio-economic status.</td>
-    <td><input value="wealth quotation from source" id = "wealth"></td>
-  </tr> <tr>
-    <th>ability</th>
-    <td>Identify a statistic that connects your experience to people with your ability.</td>
-    <td><input value="ability quotation from source" id = "ability"></td>
-  </tr>
-    <tr>
-    <th>health</th>
-    <td>Identify a statistic that connects your experience to people with your health conditions.</td>
-    <td><input value="health quotation from source" id = "health"></td>
-  </tr>
-    <tr>
-    <th>geography</th>
-    <td>Identify a statistic that connects your experience to people in your area.</td>
-    <td><input value="geography quotation from source" id = "geography"></td>
-  </tr>
-    <tr>
-    <th scope="row">How are you an outlier?</th>
-    <td>This will help us understand how you are under represented.</td>
-    <td><input value="How are you an outlier?" id = "outlier"></td>
-  </tr>
-    <tr>
-    <th scope="row">How are you average?</th>
-    <td>What are common aspects of your identity?</td>
-    <td><input value="How are you average?" id = "average"></td>
-  </tr>
-    
-    
-    <tr>
-    <th scope="row">How can you exemplify an energy descent to embody futurization?</th>
-    <td>Prosperity, spirituality, furgality.</td>
-      <td><input value="How can you exemplify an energy descent?" id = "future"></td></tr>
-      
-    <tr>
-    <th scope="row">What place is your center?</th>
-    <td>What is local to you and/or supports your autonomy? Name qualities and not a nation-state because they are explicitly exclustionary  to be based on borders.</td>
-      <td><input value="What is your center?" id = "autonomy"></td></tr>
-    
-    
-    <tr>
-    <th scope="row">What policy do you critique?</th>
-    <td>Identify the bleed or lack of protection.</td>
-      <td><input value="What policy do you critique?" id = "leak"></td></tr>
-    
-    <tr>
-    <th scope="row">What extraction needs to be restored?</th>
-    <td>We live in a culture of depletion. What do you need to preserve?</td>
-      <td><input value="What extraction needs to be restored?" id = "depletion"></td></tr>
-    
-    <tr>
-    <th scope="row">How are you ready to embrace transformation?</th>
-    <td>What aspects of change are you open to and hoping for?</td>
-      <td><input value="How are you ready to embrace transformation?" id = "hope"></td></tr>
+  <header>
+    <h1>Create a Pluriverse Data Journal</h1>
+    <p class="sub">Design lovingly harmless work. Answer prompts, then generate a color narrative from your emotions using the Magnetism‑to‑Color engine.</p>
+  </header>
 
-    <tr>
-    <th scope="row">What is your creation you want to sustain?</th>
-    <td>What practice is meaningful to you that you want to center and ritualize?</td>
-      <td><input value="What is your creation you want to sustain?" id = "ritual"></td></tr>
-    <tr>
-    <th scope="row">How do you cooperate with others?</th>
-    <td>Think of what you appreciate about diversity. Think of your obstacles.</td>
-      <td><input value="How do you cooperate with others?" id = "obstacles"></td></tr>
-    
-    <tr>
-    <th scope="row">Are you taking a bottom-up or horizontal approach?</th>
-    <td>A bottom-up approach would consider people excluded from the design stage as integral to the design. A horizontal approach doesn't exclude people from the design process.</td>
-      <td><input value="What is your approach?" id = "design"></td></tr>
-    
-    <tr>
-    <th scope="row">What are the consequences of the change you demand?</th>
-    <td>Depict what is special about the future you want to attract.</td>
-      <td><input value="What are the consequences?" id = "depict"></td></tr>
-    </table>
-    <!--make a button to reveal the mapping-->
-     <br>Result: <span id="result"></span><br>
-    <input type="button" value="complete Pluriverse Data Journal Designed Entry"  onclick="expose();">
-     <input type="reset" id="clearButton" value="Clear">
-    </form>
-   
+  <main>
+    <!-- Left: Journal form -->
+    <section class="card" id="journal">
+      <h2>1) Pluriverse Data Journal</h2>
+      <div class="grid">
+        <div>
+          <label for="name">Your name</label>
+          <input id="name" type="text" placeholder="Name" />
+        </div>
+        <div>
+          <label for="organization">Organization / Place</label>
+          <input id="organization" type="text" placeholder="Where are you from?" />
+        </div>
+      </div>
+      <label for="expression">Why have you forgotten yourself?</label>
+      <textarea id="expression" placeholder="Describe an experience, image, feeling, or fear…"></textarea>
+      <label for="origin">What is missing for your return?</label>
+      <textarea id="origin" placeholder="Obstacles; where they came from…"></textarea>
+      <label for="intention">What of yourself do you want to witness?</label>
+      <textarea id="intention" placeholder="Your prayer or intention…"></textarea>
+      <div class="grid">
+        <div>
+          <label for="symbol">What needs to be held?</label>
+          <input id="symbol" type="text" placeholder="A precious symbol…" />
+        </div>
+        <div>
+          <label for="new">How are you changing?</label>
+          <input id="new" type="text" placeholder="What is new in your expression?" />
+        </div>
+      </div>
+      <div class="grid">
+        <div>
+          <label for="support">What carries and lifts you?</label>
+          <input id="support" type="text" placeholder="Supports you recognize…" />
+        </div>
+        <div>
+          <label for="impact">What can you erase of this state?</label>
+          <input id="impact" type="text" placeholder="Your impact could reach…" />
+        </div>
+      </div>
+      <label for="body">Why do you want to forget your body?</label>
+      <textarea id="body" placeholder="Be graphic/poetic…"></textarea>
+      <label for="success">How are you already in achievement?</label>
+      <textarea id="success" placeholder="Give yourself credit…"></textarea>
 
-  <br>    <!--collects webpage as is for printing or saving as pdf-->
-  <button onclick="print();">Save</button>
-  
-  
-    <div id="output"></div>
+      <h3 class="small">Demographics (optional)</h3>
+      <div class="grid">
+        <input id="race" placeholder="race quotation from source"/>
+        <input id="gender" placeholder="gender quotation from source"/>
+        <input id="education" placeholder="education quotation from source"/>
+        <input id="occupation" placeholder="occupation quotation from source"/>
+        <input id="wealth" placeholder="wealth quotation from source"/>
+        <input id="ability" placeholder="ability quotation from source"/>
+        <input id="health" placeholder="health quotation from source"/>
+        <input id="geography" placeholder="geography quotation from source"/>
+      </div>
+      <div class="grid">
+        <input id="outlier" placeholder="How are you an outlier?"/>
+        <input id="average" placeholder="How are you average?"/>
+        <input id="future" placeholder="Energy descent to embody futurization…"/>
+        <input id="autonomy" placeholder="What place is your center?"/>
+        <input id="leak" placeholder="What policy do you critique?"/>
+        <input id="depletion" placeholder="What extraction needs to be restored?"/>
+        <input id="hope" placeholder="How are you ready to embrace transformation?"/>
+        <input id="ritual" placeholder="What creation to sustain?"/>
+        <input id="obstacles" placeholder="How do you cooperate with others?"/>
+        <input id="design" placeholder="Approach? (bottom‑up / horizontal)"/>
+        <input id="depict" placeholder="Consequences you desire…"/>
+      </div>
 
-    <script>
-        const form = document.getElementById('pluriverse');
-        const clearButton = document.getElementById('clearButton');
+      <div class="row" style="margin-top:10px">
+        <button id="compose">Compose Policy Letter</button>
+        <button class="secondary" id="clearJournal" type="button">Clear</button>
+      </div>
+      <p class="small" id="letterHint">Your letter appears below and is saved locally (private to this browser).</p>
+      <div id="result" class="card" style="margin-top:12px"></div>
+    </section>
 
-        clearButton.addEventListener('click', () => {
-            form.reset(); // This should work, but if it doesn't...
-            
-             result.innerHTML = '';
-        });
-    </script>
-  <br>
- </body>
+    <!-- Right: La Matriz engine -->
+    <section class="card" id="engine">
+      <h2>2) La Matriz — Magnetism‑to‑Color</h2>
+      <p class="small">The CSVs are bundled with this web app and loaded automatically on page load.</p>
+      <div class="row" id="dataStatus" style="gap:12px"></div>
+
+      <div class="grid" style="margin-top:10px">
+        <div>
+          <label for="startColor">Start Color</label>
+          <input id="startColor" placeholder="e.g., pink, gold, grey" />
+        </div>
+        <div>
+          <label for="length">Length</label>
+          <input id="length" type="number" value="16" min="4" max="64" />
+        </div>
+      </div>
+
+      <label>Mass <span id="massVal" class="small"></span></label>
+      <input id="mass" type="range" min="-1" max="1" step="0.05" value="0.4" />
+      <label>Voltage <span id="voltageVal" class="small"></span></label>
+      <input id="voltage" type="range" min="0" max="1" step="0.05" value="0.6" />
+      <label>Charge <span id="chargeVal" class="small"></span></label>
+      <input id="charge" type="range" min="0.1" max="2" step="0.05" value="0.8" />
+      <label>Null Time <span id="nullVal" class="small"></span></label>
+      <input id="nulltime" type="range" min="0" max="0.9" step="0.05" value="0.25" />
+
+      <div class="row" style="margin-top:10px">
+        <button id="generate">Generate</button>
+        <button class="secondary" id="exportJson">Export JSON</button>
+      </div>
+
+      <div id="viz" style="margin-top:12px"></div>
+      <div id="table"></div>
+    </section>
+  </main>
+
+  <footer class="small">© Danielle Gauthier — Pluriverse Journal • Data is bundled with the app & stored in‑browser. No external services are called.
+  </footer>
+
+<script>
+// ====== Configuration: where the bundled CSVs live (relative URLs) ======
+const DATA_URLS = {
+  sem: 'data/semantic_rgb_mapping_with_sentiment.csv',
+  mat: 'data/la_matrice.csv',
+  seq: 'data/la_matrice_sequences.csv'
+};
+
+// ====== helpers ======
+const $ = (id)=>document.getElementById(id);
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const toNum=(v)=> (v==null||v==='')? NaN : +v;
+
+function parseWords(s){ if(!s) return []; return (''+s).replace(/[\/;]/g,',').split(',').map(t=>t.trim().toLowerCase()).filter(Boolean); }
+
+// RGB<->HSV
+function rgb2hsv(r,g,b){ r/=255; g/=255; b/=255; const mx=Math.max(r,g,b), mn=Math.min(r,g,b); const d=mx-mn; let h=0; if(d!==0){ if(mx===r) h=(60*((g-b)/d)+360)%360; else if(mx===g) h=(60*((b-r)/d)+120)%360; else h=(60*((r-g)/d)+240)%360; } const s= mx===0?0:d/mx; return [h,s,mx]; }
+function hsv2rgb(h,s,v){ h%=360; const c=v*s; const x=c*(1-Math.abs((h/60)%2-1)); const m=v-c; let rp=0,gp=0,bp=0; if(h<60){rp=c;gp=x;} else if(h<120){rp=x;gp=c;} else if(h<180){gp=c;bp=x;} else if(h<240){gp=x;bp=c;} else if(h<300){rp=x;bp=0;} else {rp=c;} const r= Math.round((rp+m)*255), g=Math.round((gp+m)*255), b=Math.round((bp+m)*255); return [r,g,b]; }
+function applyMass(rgb,mass){ const [h,s,v]=rgb2hsv(rgb[0],rgb[1],rgb[2]); const s2=clamp(s*(1+0.75*mass),0,1); const v2=clamp(v*(1+0.50*mass),0,1); return hsv2rgb(h,s2,v2); }
+function jaccard(a,b){ const A=new Set(a), B=new Set(b); const inter=[...A].filter(x=>B.has(x)).length; const uni=new Set([...A,...B]).size||1; return inter/uni; }
+
+// ====== engine state ======
+let SEM=[], MAT=[], SEQS=[]; // populated from bundled CSVs
+let semOriginIdx=0; // computed after load
+
+function computeDerived(){
+  const sentiments = SEM.map(r=>toNum(r['Sentiment Score']));
+  const mean = sentiments.reduce((a,b)=>a+b,0)/Math.max(1,sentiments.length);
+  const std = Math.sqrt(sentiments.reduce((a,b)=>a+(b-mean)**2,0)/Math.max(1,sentiments.length));
+
+  SEM=SEM.map(r=>{
+    const color=(r['Closest Color']||r['color_name']||'').toString().trim().toLowerCase();
+    const R=toNum(r['R']||r['r']); const G=toNum(r['G']||r['g']); const B=toNum(r['B']||r['b']);
+    const s=toNum(r['Sentiment Score']||r['sentiment']);
+    return {color_name:color,R,G,B,sentiment:s,words:parseWords(r['Original Words']||r['words']||'')};
+  });
+
+  const absmax = Math.max(...SEM.map(r=>Math.abs((r.sentiment-mean)/(std||1))));
+  SEM=SEM.map(r=>{ const sn=(r.sentiment-mean)/(std||1); return {...r, sentiment_norm: sn, _absmax: absmax}; });
+
+  // origin index = closest to neutral
+  let best=0, bestAbs=1e9; SEM.forEach((r,i)=>{ const a=Math.abs(r.sentiment_norm); if(a<bestAbs){best=i; bestAbs=a;} });
+  semOriginIdx=best;
+}
+
+function similarity(i,j,alpha=0.6){ const a=SEM[i], b=SEM[j]; const ds=Math.abs(a.sentiment_norm-b.sentiment_norm); const sentSim=1 - (ds/ (Math.max(1e-9,Math.max(a._absmax,b._absmax)))); const wordSim=jaccard(a.words,b.words); return alpha*sentSim + (1-alpha)*wordSim; }
+function neutralIndices(){ const candidates=new Set(['grey','gray','white','nude','beige']); const idx=[]; SEM.forEach((r,i)=>{ if(candidates.has(r.color_name)) idx.push(i); }); if(idx.length) return idx; const order=[...SEM.keys()].sort((i,j)=>Math.abs(SEM[i].sentiment_norm)-Math.abs(SEM[j].sentiment_norm)); return order.slice(0,5); }
+
+function generateSequence(len=16, seed=7, mass=0.4, voltage=0.6, charge=0.8, nullBias=0.25, startColor){
+  let state = (seed>>>0)||7; const rand=()=> (state=(1664525*state+1013904223)>>>0, state/4294967296);
+  const choice=(arr)=> arr[Math.floor(rand()*arr.length)];
+
+  let startIdx = semOriginIdx; if(startColor){ const found = SEM.findIndex(r=> r.color_name === startColor.toLowerCase()); if(found>=0) startIdx=found; }
+
+  const seq=[]; let currentIdx=startIdx; const neutrals=neutralIndices();
+  for(let t=0;t<len;t++){
+    const row=SEM[currentIdx]; const rgb=[row.R,row.G,row.B]; const rgbMass=applyMass(rgb,mass);
+    seq.push({t, name:row.color_name, rgb:rgbMass, base_rgb:rgb, sentiment:row.sentiment, words:row.words, narrative:narrativeFor(row.color_name)});
+
+    const mag=Math.abs(row.sentiment_norm); const pRest = nullBias * (1 - mag);
+    if(rand() < pRest){ const nidx = choice(neutrals); const nrow=SEM[nidx]; const nrgb=[nrow.R,nrow.G,nrow.B]; const rest=applyMass(nrgb, mass*0.2);
+      seq.push({t:t+0.5, name:nrow.color_name, rgb:rest, base_rgb:nrgb, sentiment:nrow.sentiment, words:nrow.words, narrative:(narrativeFor(nrow.color_name)||'')+' (rest)'});
+    }
+
+    const effectiveCharge = charge*(1+0.4*voltage);
+    const sims=SEM.map((_,j)=> similarity(currentIdx,j)); const dist=sims.map(s=>1-Math.max(0,Math.min(1,s)));
+    const w=dist.map((d,idx)=> idx===currentIdx?0: Math.max(0, effectiveCharge/Math.max(1e-3,d))); const sum=w.reduce((a,b)=>a+b,0);
+    if(sum<=0){ currentIdx = Math.floor(rand()*SEM.length); }
+    else { let r=rand()*sum; for(let i=0;i<w.length;i++){ r-=w[i]; if(r<=0){ currentIdx=i; break; } }
+    }
+  }
+  return seq;
+}
+
+function narrativeFor(name){ const row=MAT.find(r=> (''+r['color']).toLowerCase().trim()===name ); if(!row) return ''; const parts=[row['matrice1'],row['matrice'],row['english-words-code']].map(x=> x==null? '': ''+x); return parts.filter(Boolean).join(', '); }
+
+// ====== UI wire-up ======
+['mass','voltage','charge','nulltime'].forEach(id=>{ const el=$(id); const lab=$(id+"Val"); const fmt=(v)=> Number(v).toFixed(2); const update=()=> lab.textContent = `(${fmt(el.value)})`; el.addEventListener('input',update); update(); });
+
+$('clearJournal').addEventListener('click',()=>{ localStorage.removeItem('pluri_journal'); $('result').innerHTML=''; [...document.querySelectorAll('#journal input, #journal textarea')].forEach(i=> i.value=''); });
+$('compose').addEventListener('click',()=>{
+  const g=(id)=>($(id).value||'').trim();
+  const letter = `<p>Dear policy maker,</p>
+  <p>My name is <b>${g('name')}</b> from <b>${g('organization')}</b>. Here is a little about my intersection so you can know about my community struggles. <i>${g('expression')}</i> happens to me a lot. This is a breakdown of how to address this public issue using the Pluriverse Data Journal creator by Danielle Gauthier (she/they).</p>
+  <p><i>${g('expression')}</i> makes it harder for me to survive. I feel like it is my fault but this deterministic model defines how social construction is personal politics. I determined how to save people like me in the community with a lasting effort. <i>${g('body')}</i> is some of the stuff happening to me that I want to change. <b>${g('intention')}</b> is my intention.</p>
+  <p><b>${g('race')}</b> is a common issue for people with my racial demographic. <b>${g('gender')}</b> is a gender issue for me. My education is <b>${g('education')}</b>. My occupation shows <b>${g('occupation')}</b>. My <b>${g('ability')}</b> affects my <b>${g('wealth')}</b> and my <b>${g('health')}</b>.</p>
+  <p>I am one of many and also one of few. My environment is <b>${g('geography')}</b> but I want it to be <b>${g('autonomy')}</b>. <i>${g('average')}</i> makes me one of many and <i>${g('outlier')}</i> makes me one of few. <i>${g('expression')}</i> can be solved for us with the following policy:</p>
+  <p><b>${g('design')}</b> that is for <b>${g('future')}</b> solves my social problem. <b>${g('new')}</b> preserves my <b>${g('symbol')}</b>. <b>${g('impact')}</b> provides me with <b>${g('support')}</b>. To end my <b>${g('origin')}</b>, I need to address the <b>${g('leak')}</b>. It is causing a lack of <b>${g('depletion')}</b>. I am committed to <b>${g('ritual')}</b> for <b>${g('hope')}</b> to transform <b>${g('obstacles')}</b> for <b>${g('depict')}</b>.</p>`;
+  $('result').innerHTML=letter; localStorage.setItem('pluri_journal', JSON.stringify(Object.fromEntries([...document.querySelectorAll('#journal input, #journal textarea')].map(i=>[i.id,i.value]))));
+});
+
+// restore autosave
+try{ const saved=JSON.parse(localStorage.getItem('pluri_journal')||'null'); if(saved){ for(const k in saved){ const el=$(k); if(el) el.value=saved[k]; } $('compose').click(); } }catch(e){}
+
+// ====== Bundled CSV loading (no user uploads) ======
+async function fetchCsv(url){ const resp = await fetch(url); if(!resp.ok) throw new Error(`HTTP ${resp.status}`); const text= await resp.text(); return new Promise((res)=> Papa.parse(text,{header:true, skipEmptyLines:true, complete: (r)=> res(r.data)})); }
+
+async function loadAll(){
+  const status = $('dataStatus');
+  function pill(label, cls){ const s=document.createElement('span'); s.className='pill '+(cls||''); s.textContent=label; return s; }
+  status.textContent='Loading data… ';
+  try{
+    const [sem, mat, seq] = await Promise.all([
+      fetchCsv(DATA_URLS.sem), fetchCsv(DATA_URLS.mat), fetchCsv(DATA_URLS.seq)
+    ]);
+    SEM=sem; MAT=mat; SEQS=seq; computeDerived();
+    status.innerHTML='';
+    status.appendChild(pill('semantic_rgb_mapping_with_sentiment.csv ✓','ok'));
+    status.appendChild(pill('la_matrice.csv ✓','ok'));
+    status.appendChild(pill('la_matrice_sequences.csv ✓','ok'));
+  }catch(err){
+    status.innerHTML = `<span class="pill err">Data load failed: ${err.message}</span> <span class="small">Place the three CSVs under <code>/data/</code> next to this HTML file, or update <code>DATA_URLS</code> above.</span>`;
+  }
+}
+
+let LAST_SEQ=[];
+function drawViz(seq){
+  const width = Math.max(600, seq.length*24); const height=80;
+  const container = $('viz'); container.innerHTML='';
+  const c=document.createElement('canvas'); c.width=width; c.height=height; container.appendChild(c);
+  const ctx=c.getContext('2d'); const w=width/seq.length;
+  seq.forEach((s,i)=>{ ctx.fillStyle=`rgb(${s.rgb[0]},${s.rgb[1]},${s.rgb[2]})`; ctx.fillRect(i*w,0,w,height); });
+}
+
+function updateTable(seq){
+  const t=document.createElement('table'); t.style.width='100%'; t.style.marginTop='10px'; t.style.borderCollapse='collapse';
+  t.innerHTML='<tr><th style="text-align:left">step</th><th>t</th><th>color</th><th>rgb</th><th>sentiment</th><th>narrative</th></tr>';
+  seq.slice(0,24).forEach((s,i)=>{
+    const tr=document.createElement('tr'); tr.innerHTML=`<td>${i}</td><td>${s.t}</td><td>${s.name}</td><td>${s.rgb.join(', ')}</td><td>${(s.sentiment??'').toFixed? s.sentiment.toFixed(3): s.sentiment}</td><td>${s.narrative||''}</td>`; t.appendChild(tr);
+  });
+  $('table').innerHTML=''; $('table').appendChild(t);
+}
+
+$('generate').addEventListener('click', ()=>{
+  if(!SEM.length || !MAT.length){ alert('Data not loaded yet.'); return; }
+  const seq = generateSequence(parseInt($('length').value||'16',10), 7, parseFloat($('mass').value), parseFloat($('voltage').value), parseFloat($('charge').value), parseFloat($('nulltime').value), ($('startColor').value||'').trim());
+  LAST_SEQ=seq; drawViz(seq); updateTable(seq);
+});
+
+$('exportJson').addEventListener('click',()=>{
+  if(!LAST_SEQ.length){ alert('Generate a sequence first.'); return; }
+  const payload = {version:1, engine:'magnetism-to-color', sequence:LAST_SEQ};
+  const blob = new Blob([JSON.stringify(payload,null,2)], {type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pluriverse_la_matriz_sequence.json'; a.click(); URL.revokeObjectURL(a.href);
+});
+
+// kick off data load on start
+loadAll();
+</script>
+</body>
 </html>
